@@ -1,0 +1,69 @@
+<style>
+    .full-width{
+        width: 100%;
+    }
+
+    h3 {
+        margin: 0;
+        display: inline-block;
+    }
+</style>
+
+<table width="100%">
+    <tr>
+        <td align="left" width="50%" style="vertical-align: bottom;">
+            <h3> Bot Configuration </h3>
+        </td>
+        <td align="right" width="50%" style="vertical-align: middle;">
+            <a mat-stroked-button mat-dialog-close><mat-icon>close</mat-icon></a>
+        </td>
+    </tr>
+</table>
+
+<br/><mat-divider></mat-divider><br/>
+
+<div style="width: 100%;" *ngFor="let item of arrConfig">
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Telegram Token</mat-label>
+        <input matInput [type]="formDisabled ? 'password' : 'text'" [(ngModel)]="item.TELEGRAM_TOKEN" name="fToken" [disabled]="formDisabled">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Developer ID</mat-label>
+        <input matInput [type]="formDisabled ? 'password' : 'text'" [(ngModel)]="item.DEV_ID" name="fToken" [disabled]="formDisabled">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Company Name</mat-label>
+      <input matInput [(ngModel)]="item.COMPANY_NAME" name="fCompanyName" [disabled]="formDisabled">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Bot Name</mat-label>
+        <input matInput [(ngModel)]="item.BOT_NAME" name="fCompanyName" [disabled]="formDisabled">
+      </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Is Default</mat-label>
+      <mat-select [(ngModel)]="item.IS_DEFAULT" [disabled]="formDisabled">
+        <mat-option value="0">False</mat-option>
+        <mat-option value="1">True</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Is Maintenance</mat-label>
+        <mat-select [(ngModel)]="item.IS_MAINTENANCE" [disabled]="formDisabled">
+          <mat-option value="0">False</mat-option>
+          <mat-option value="1">True</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button matSuffix (click)="saveToken()">
+            {{formDisabled ? 'Edit' : 'Save'}}
+        </button>
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+    
+</div>

@@ -1,0 +1,62 @@
+﻿<style>
+    .main-div{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login{
+        width: 45%;
+        padding: 2rem;
+    }
+
+    .login-form{
+        width: 100%;
+    }
+
+</style>
+
+<div class="main-div">
+    
+    <mat-card class="login mat-elevation-z8">
+        <h2>VirtusBot&trade; by Virtus Technology Indonesia</h2>
+        <div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <p align="center">
+                    <mat-form-field appearance="outline" class="login-form">
+                        <mat-label>Username</mat-label>
+                        <input matInput type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
+                        <div *ngIf="submitted && f.username.errors">
+                            <mat-hint>Username is required</mat-hint>
+                        </div>
+                    </mat-form-field>
+                </p>
+                
+                <p align="center">
+                    <mat-form-field appearance="outline" class="login-form">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
+                        <div *ngIf="submitted && f.username.errors">
+                            <mat-hint>Password is required</mat-hint>
+                        </div>
+                    </mat-form-field>
+                </p>
+                
+                <mat-divider></mat-divider><br/>
+
+                <p align="right">
+                    <button [disabled]="loading" mat-stroked-button>
+                        <span *ngIf="loading"></span>
+                        Login
+                    </button>
+                </p>
+                    
+            </form>
+
+        </div>
+    </mat-card>
+    
+</div>
+
+    

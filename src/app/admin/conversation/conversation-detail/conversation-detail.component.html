@@ -1,0 +1,23 @@
+<div style="overflow: auto; height: 50vh;"><br/>
+    <table align="center" width="95%" *ngFor="let item of arrLog" >
+        <tr>
+            <td width="100%" align="left">
+                <mat-card class="chat-baloon-left">
+                    <p align="left" [innerHTML]="item.MSG">
+                    </p>
+                </mat-card>
+                <mat-divider style="visibility: hidden;"></mat-divider>
+                <p align="left" class="timestamp">&nbsp;&nbsp;&nbsp;{{epochToDate(item.TIMESTAMP)}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" align="right">
+                <mat-card class="chat-baloon-right">
+                    <p align="left" [innerHTML]="item.RESPONSE">
+                    </p>
+                </mat-card>
+                <p align="right" class="timestamp">{{epochToDate(item.TIMESTAMP)}}&nbsp;&nbsp;&nbsp;</p>
+            </td>
+        </tr>
+    </table>
+</div>

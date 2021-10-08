@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Confirm Delete</h2>
+<mat-dialog-content class="mat-typography">
+    <p align="center">
+        Are you sure to delete the item?
+        <mat-hint>Action cannot be undo.</mat-hint>
+    </p>
+    
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="delete(1)">Yes</button>
+    <button mat-stroked-button (click)="delete(0)">No</button>
+</mat-dialog-actions>

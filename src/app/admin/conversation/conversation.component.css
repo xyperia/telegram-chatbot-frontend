@@ -1,0 +1,18 @@
+::ng-deep .custom-dialog > mat-dialog-container {
+    background-color: var(--background);
+}
+
+.conv-content{
+    border-spacing: 15px;
+}
+
+.conversation-content{
+    vertical-align: top;
+    white-space: pre-line;
+}
+
+.title {
+    background-color: rgba(63, 81, 181, 0.6);
+    max-width: 100%;
+    text-align: left;
+}

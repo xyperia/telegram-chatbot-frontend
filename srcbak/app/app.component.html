@@ -1,0 +1,45 @@
+<mat-sidenav-container>
+    <mat-sidenav-content>
+      <nav class="navbar sticky-top"
+        [class.mat-elevation-z8]="true">
+        <!-- background-color: #c2185b; PINK-->
+          
+
+          <table>
+            <tr>
+              <td>
+                <button mat-icon-button [matMenuTriggerFor]="moreMenu">
+                  <mat-icon>menu</mat-icon>
+                </button>
+                <mat-menu #moreMenu="matMenu">
+                  <button mat-menu-item [matMenuTriggerFor]="stgs"><mat-icon>settings</mat-icon>Settings</button>
+                  <!-- <button mat-menu-item><mat-icon>supervised_user_circle</mat-icon>Log Out</button> -->
+                </mat-menu>
+      
+                <mat-menu #stgs="matMenu">
+                  <button mat-menu-item (click)="showConfig()"><mat-icon>settings_applications</mat-icon>Bot Configuration</button>
+                </mat-menu>
+              </td>
+              <td *ngFor="let route of routerContent">
+                <a mat-button routerLink="{{route.url}}">
+                  {{route.title}}
+                </a>
+              </td>
+            </tr>
+          </table>
+        
+      </nav>
+      <div class="header">
+        <h2>{{pageTitle}}</h2>
+      </div>
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  
+<mat-toolbar style="background-color: #3f51b5;">
+  <mat-toolbar-row>
+      <span class="footer">Copyright 2021. Virtus Technology Indonesia. All Rights Reserved</span>
+  </mat-toolbar-row>
+</mat-toolbar>  

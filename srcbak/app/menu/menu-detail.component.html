@@ -1,0 +1,133 @@
+<style>
+    h3 {
+        margin: 0;
+        display: inline-block;
+    }
+</style>
+
+<table width="100%">
+    <tr>
+        <td align="left" width="50%" style="vertical-align: bottom;">
+            <div *ngIf="data; else insertNew">
+                <div *ngIf="isUpdate; else nEdit">
+                    <h3>Edit Menu</h3>
+                </div>
+                <ng-template #nEdit>
+                    <h3>Menu Detail</h3>
+                </ng-template>
+            </div>
+            <ng-template #insertNew> <h3>Add New Menu</h3> </ng-template>
+        </td>
+        <td align="right" width="50%" style="vertical-align: middle;">
+            <a mat-stroked-button mat-dialog-close><mat-icon>close</mat-icon></a>
+        </td>
+    </tr>
+</table>
+
+    <br/><mat-divider></mat-divider><br/>
+
+<div *ngIf="!isUpdate; else updateForm">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Title&nbsp;<i>{{data.TITLE}}</i>
+            </mat-panel-title>
+            <mat-panel-description>
+                ID:&nbsp;<i>{{data.ID}}</i>
+            </mat-panel-description>
+        </mat-expansion-panel-header><br/>
+        <p style="white-space: pre-line;" [innerHTML]="data.CONTENT"></p>
+        <mat-divider></mat-divider><br/>
+        <mat-hint>Keyword: <i>{{data.KEYWORD}}</i></mat-hint>
+    </mat-expansion-panel><br/>
+</div>
+
+<ng-template #updateForm>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Menu Data
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form style="width: 100%;"><br/>
+            <p *ngIf="fieldId">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Menu ID</mat-label>
+                    <input matInput [(ngModel)]="fieldId" name="fId" matTooltip="ID is generated automatically" disabled>
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Menu Title</mat-label>
+                    <input matInput [(ngModel)]="fieldTitle" [formControl]="fTitle" [matTooltip]="tipTitle" minlength="5" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-error *ngIf="fTitle.invalid">{{getErrorMessage(fTitle)}}</mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Menu Keyword</mat-label>
+                    <input matInput [(ngModel)]="fieldKeyword" [formControl]="fKeyword" [matTooltip]="tipKeyword" minlength="1" required>
+                    <mat-icon matSuffix>stars</mat-icon>
+                    <mat-error *ngIf="fKeyword.invalid">{{getErrorMessage(fKeyword)}}</mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Menu Content</mat-label>
+                    <textarea matInput [(ngModel)]="fieldContent" [formControl]="fContent" rows="7" [matTooltip]="tipContent" minlength="5" required>
+                    </textarea>
+                    <mat-error *ngIf="fContent.invalid">{{getErrorMessage(fContent)}}</mat-error>
+                </mat-form-field>
+            </p>
+        </form>
+    </mat-expansion-panel><br/>
+</ng-template>
+
+<p>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Controls
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+            <mat-slide-toggle [(ngModel)]="fieldIsMainMenu" [disabled]="!isUpdate" [matTooltip]="tipMainMenu">Main Menu</mat-slide-toggle><br/>
+            <mat-slide-toggle [(ngModel)]="fieldIsLastMenu" [disabled]="!isUpdate" [matTooltip]="tipLastMenu">Last Menu</mat-slide-toggle><br/>
+            <mat-slide-toggle [(ngModel)]="fieldIsEnabled" [disabled]="!isUpdate" [matTooltip]="tipIsEnabled">Show Menu</mat-slide-toggle><br/>
+    </mat-expansion-panel><br/>
+</p>
+
+
+<div *ngIf="isUpdate; else detView">
+    <mat-dialog-actions align="end">
+        <div *ngIf="!isSave; else saveConfirm">
+            
+            <div *ngIf="data; else addNew">
+                <button mat-stroked-button (click)="formCheck()">Save</button>
+                <button mat-stroked-button color="accent" (click)="isUpdate = false">Cancel</button>
+            </div>
+            <ng-template #addNew>
+                <button mat-stroked-button (click)="formCheck()">Save</button>&nbsp;
+                <button mat-button mat-dialog-close>Close</button>
+            </ng-template>
+            
+        </div>
+        <ng-template #saveConfirm>
+            Confirm Save? &nbsp;
+            <div>
+                <button mat-stroked-button (click)="save()">Yes</button>
+            </div>&nbsp;
+            
+            <button mat-stroked-button color="accent" (click)="isSave = false">No</button>
+        </ng-template>
+    </mat-dialog-actions>
+</div>
+<ng-template #detView>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button (click)="isUpdate = true">
+            Edit
+        </button>&nbsp;
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</ng-template>

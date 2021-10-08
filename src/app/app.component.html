@@ -1,0 +1,71 @@
+<div *ngIf="user; else loginForm">
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <nav class="navbar sticky-top" [class.mat-elevation-z8]="true">
+          <table>
+            <tr>
+              <td>
+                <button mat-icon-button [matMenuTriggerFor]="moreMenu">
+                  <mat-icon>menu</mat-icon>
+                </button>
+                <mat-menu #moreMenu="matMenu">
+                  <button mat-menu-item [matMenuTriggerFor]="stgs"><mat-icon>settings</mat-icon>Settings</button>
+                  <button mat-menu-item (click)="logout()">Log Out ({{user.USERNAME}})</button>
+                </mat-menu>
+      
+                <mat-menu #stgs="matMenu">
+                  <button mat-menu-item (click)="showConfig()"><mat-icon>settings_applications</mat-icon>Bot Configuration</button>
+                </mat-menu>
+              </td>
+              <td *ngFor="let route of routerContent">
+                <a mat-button routerLink="{{route.url}}">
+                  {{route.title}}
+                </a>
+              </td>
+            </tr>
+          </table>
+        
+      </nav>
+      <div class="header">
+        <h2>{{pageTitle}}</h2>
+      </div>
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  <mat-toolbar style="background-color: #3f51b5;">
+    <mat-toolbar-row>
+        <span class="footer">Copyright 2021. Virtus Technology Indonesia. All Rights Reserved</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<ng-template #loginForm>
+  <div class="login">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+
+
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="text-center mt-4">
+  <p>
+      <a href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial" target="_top">Angular 9 - User Registration and Login Example & Tutorial</a>
+  </p>
+  <p>
+      <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+  </p>
+</div> -->

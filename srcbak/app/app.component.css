@@ -1,0 +1,30 @@
+.navbar {
+    padding: 2vh;
+    background-color: #3f51b5;
+    width: 100%;
+    position: fixed;
+    z-index: 99999;
+}
+
+.content-body{
+    padding-top: 15vh;
+}
+
+.header {
+    padding-top: 14vh;
+    padding-left: 5vh;
+    padding-bottom: 1vh;
+    background-color: #3f51b5;
+    position: relative;
+    text-align: left;
+}
+
+.container {
+    padding: 4vh;
+    min-height: 61vh;
+}
+
+.footer {
+    margin: auto;
+    font-size: .75rem;
+}

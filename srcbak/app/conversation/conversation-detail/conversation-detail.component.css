@@ -1,0 +1,19 @@
+.chat-baloon-left {
+    max-width: 50%;
+    background-color:rgba(63, 81, 181, 0.6);
+    border: rgba(63, 81, 181, 0.6);
+    border-radius: 1rem !important;
+    white-space: pre-line;
+}
+
+.chat-baloon-right {
+    max-width: 50%;
+    background-color:rgba(63, 81, 181, 0.4);
+    border: rgba(63, 81, 181, 0.4);
+    border-radius: 1rem !important;
+    white-space: pre-line;
+}
+
+.timestamp {
+    color: #9a9a9a;
+}

@@ -1,0 +1,8 @@
+.rounded{
+    border-radius: 3vh;
+    overflow: hidden !important;
+}
+
+h2.center{
+    text-align: center;
+}

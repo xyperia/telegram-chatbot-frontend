@@ -1,0 +1,72 @@
+<!-- <table width="100%">
+    <tr>
+        <td align="left">
+            <h2>Conversations History</h2>
+        </td>
+        <td align="right">
+            <a mat-stroked-button (click)="refresh()" matTooltip="Refresh History"><mat-icon>refresh</mat-icon>&nbsp;Refresh</a>
+        </td>
+    </tr>
+</table> -->
+
+<table width="100%" class="conv-content">
+    <tr *ngIf="arrLog.length > 0; else noConv">
+        <td width="30%" class="conversation-content mat-elevation-z8" style="border-radius: 3vh; overflow:hidden !important;">
+            <div style="overflow: auto; max-height: 70vh;">
+                <mat-selection-list [multiple]="false">
+                    <mat-list-option style="border-radius: 3vh; overflow:hidden !important;" *ngFor="let item of arrLog" (click)="
+                        menuClick(item.SENDER_ID);
+                        selId = item.SENDER_ID;
+                        selNick = item.SENDER_NICK;
+                        selUser = item.SENDER_USERNAME;
+                        selPicture = item.PICTURE;
+                        ">
+
+                        <img [src]="item.PICTURE" mat-list-icon>
+                        <div mat-line>{{item.SENDER_NICK}}</div>
+                        <div mat-line> @{{item.SENDER_USERNAME}} </div>
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </td>
+        <td class="container-list mat-elevation-z8" align="center" *ngIf="data" style="border-radius: 3vh; overflow:hidden !important;">
+            <mat-card class="title">
+                <mat-card-header>
+                    <a (click)="imgDetail(selPicture)" style="background-size: cover; background-image: url({{selPicture}});" mat-card-avatar></a>
+                    <mat-card-title-group>
+                        <mat-card-title>{{selNick}}</mat-card-title>
+                        <mat-card-subtitle>@{{selUser}}</mat-card-subtitle>
+                    </mat-card-title-group>
+                    <div fxFlex></div>
+                    <table width="100%">
+                        <tr>
+                            <td align="right">
+                                <button mat-icon-button [matMenuTriggerFor]="moreMenu">
+                                    <mat-icon>menu</mat-icon>
+                                </button>
+                                <mat-menu #moreMenu="matMenu">
+                                    <button mat-menu-item (click)="confirmDelete(selId)">
+                                        <mat-icon>delete_forever</mat-icon>
+                                        &nbsp;Clear Conversation
+                                    </button>
+                                    <!-- <button mat-menu-item disabled>
+                                        <mat-icon>close</mat-icon>
+                                        &nbsp;Block User
+                                    </button> -->
+                                </mat-menu>
+                            </td>
+                        </tr>
+                    </table>
+                </mat-card-header>
+                <!-- <mat-card-actions>
+                    <a mat-stroked-button *ngIf="data" (click)="confirmDelete(selId)"><mat-icon>delete_forever</mat-icon>&nbsp;Delete Conversation</a>
+                </mat-card-actions> -->
+            </mat-card>
+            <app-conversation-detail [data]="data"></app-conversation-detail>
+        </td>
+    </tr>
+    <ng-template #noConv>
+        <h3 align="center">No conversations recently.</h3>
+    </ng-template>
+</table>
+    
